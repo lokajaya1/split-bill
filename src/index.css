@@ -151,6 +151,10 @@ select {
   transition: 0.3s;
 }
 
+input::placeholder {
+  font-size: 1.2rem;
+}
+
 input:focus,
 select:focus {
   outline: none;
