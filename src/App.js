@@ -10,28 +10,39 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 function App() {
   const [showAddFriend, setShowAddFriend] = useState(false);
   const [friends, setFriends] = useState(initialFriends);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   function handleShowAddFriend() {
     setShowAddFriend((setShowAddFriend) => !setShowAddFriend);
+    setSelectedFriend(false);
   }
 
   function handleAddFriend(friend) {
     setFriends((friends) => [...friends, friend]);
   }
 
+  function handleSelectedFriend(friend) {
+    setSelectedFriend((selected) =>
+      selected?.id === friend.id ? null : friend
+    );
+    setShowAddFriend(false);
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
         <h1>Split Bill</h1>
-        <FriendList friends={friends} />
+        <FriendList
+          friends={friends}
+          onSelected={handleSelectedFriend}
+          selectedFriend={selectedFriend}
+        />
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
         <button className="button" onClick={handleShowAddFriend}>
           {showAddFriend ? "Tutup" : "Tambah Teman"}
         </button>
       </div>
-      <div>
-        <FormSplitBill />
-      </div>
+      <div>{selectedFriend && <FormSplitBill />}</div>
     </div>
   );
 }
