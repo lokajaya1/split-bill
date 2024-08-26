@@ -42,7 +42,9 @@ function App() {
           {showAddFriend ? "Tutup" : "Tambah Teman"}
         </button>
       </div>
-      <div>{selectedFriend && <FormSplitBill />}</div>
+      <div>
+        {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+      </div>
     </div>
   );
 }

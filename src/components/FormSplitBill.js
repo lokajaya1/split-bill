@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function FormSplitBill() {
+export default function FormSplitBill({ selectedFriend }) {
   return (
     <>
       <form className="form-split-bill">
-        <h2>Patungan</h2>
+        <h2>Patungan bersama {selectedFriend.name}</h2>
 
         <label htmlFor="total-amount">
           <i className="fas fa-money-bill-wave"></i> Total Biaya
@@ -17,7 +17,7 @@ export default function FormSplitBill() {
         <input id="your-bill" type="number" placeholder="Tagihan Kamu" />
 
         <label htmlFor="friend-bill">
-          <i className="fas fa-users"></i> Tagihan X
+          <i className="fas fa-users"></i> Tagihan {selectedFriend.name}
         </label>
         <input id="friend-bill" type="number" placeholder="Tagihan X" />
 
@@ -26,7 +26,7 @@ export default function FormSplitBill() {
         </label>
         <select id="payee">
           <option value="user">Kamu</option>
-          <option value="friend">Teman</option>
+          <option value="friend">{selectedFriend.name}</option>
         </select>
 
         <button className="button">
